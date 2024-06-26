@@ -8,9 +8,18 @@ importers:
 
   .:
     dependencies:
+      '@lordicon/element':
+        specifier: ^1.6.0
+        version: 1.6.0
+      '@lordicon/react':
+        specifier: ^1.6.0
+        version: 1.6.0(lottie-web@5.12.2)(react@18.3.1)
       axios:
         specifier: ^1.7.2
         version: 1.7.2
+      lottie-web:
+        specifier: ^5.12.2
+        version: 5.12.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -347,6 +356,27 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
+
+  '@lordicon/element@1.6.0':
+    resolution: {integrity: sha512-+w/CBDsqWvPZNwNIm1RszudmmJ8/sSsz+k5vS+b6Go37nidtQUG1JdMgCHdO5yzZLi+Pi3iX+EoqQdtGSzQucQ==}
+
+  '@lordicon/helpers@1.6.0':
+    resolution: {integrity: sha512-iEw6q1gycHf77e4o+PdTg1Ua4yXdREVnCsErTw/f4eaAUDYFF/qWQSq3mJJuiwvZ/JT1vwctQ2dKr1FxUY1W2w==}
+
+  '@lordicon/react@1.6.0':
+    resolution: {integrity: sha512-SqDdc9/ReRpO3D8t1WG+yOKAFwQsewuw9hf6++faJhGk/ZgUOA4mqPke4R/pc0pMhXHOeET9DPgvNi1dmRpxxw==}
+    peerDependencies:
+      lottie-react-native: '*'
+      lottie-web: '*'
+      react: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      lottie-react-native:
+        optional: true
+      lottie-web:
+        optional: true
+      react-native:
+        optional: true
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -916,6 +946,9 @@ packages:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
 
+  lottie-web@5.12.2:
+    resolution: {integrity: sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==}
+
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
 
@@ -1465,6 +1498,19 @@ snapshots:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
+
+  '@lordicon/element@1.6.0':
+    dependencies:
+      '@lordicon/helpers': 1.6.0
+
+  '@lordicon/helpers@1.6.0': {}
+
+  '@lordicon/react@1.6.0(lottie-web@5.12.2)(react@18.3.1)':
+    dependencies:
+      '@lordicon/helpers': 1.6.0
+      react: 18.3.1
+    optionalDependencies:
+      lottie-web: 5.12.2
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -2061,6 +2107,8 @@ snapshots:
   loose-envify@1.4.0:
     dependencies:
       js-tokens: 4.0.0
+
+  lottie-web@5.12.2: {}
 
   lru-cache@5.1.1:
     dependencies:

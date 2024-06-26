@@ -1,6 +1,8 @@
 import React, { useState, useReducer, useRef, useEffect, useCallback } from 'react';
 import axios from './api/axiosConfig';
 import './App.scss';
+import { Player } from '@lordicon/react';
+import ICON from './assets/lock.json';
 
 interface Book {
   book_id: number;
@@ -42,17 +44,27 @@ const App: React.FC = () => {
   const [search, setSearch] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [editFields, setEditFields] = useState<{ [key: number]: Partial<Book> }>({});
+  const [loading, setLoading] = useState(false); // Add loading state
   const booksPerPage = 5;
+  const playerRef = useRef<Player>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    playerRef.current?.playFromBeginning();
+  }, []);
+
+
+  useEffect(() => {
     const fetchBooks = async () => {
+      setLoading(true); // Set loading to true when fetching data
       try {
         const response = await axios.get('/books');
         dispatch({ type: 'SET_BOOKS', books: response.data });
       } catch (error) {
         console.error('Error fetching books:', error);
+      } finally {
+        setLoading(false); // Set loading to false after data is fetched
       }
     };
 
@@ -65,23 +77,22 @@ const App: React.FC = () => {
   };
 
   const handleAddBook = async () => {
-  if (!input.title.trim() || !input.author.trim() || !input.year.trim()) return;
-  const newBook = {
-    title: input.title,
-    author: input.author,
-    year: parseInt(input.year),
+    if (!input.title.trim() || !input.author.trim() || !input.year.trim()) return;
+    const newBook = {
+      title: input.title,
+      author: input.author,
+      year: parseInt(input.year),
+    };
+
+    try {
+      const response = await axios.post('/books', newBook);
+      dispatch({ type: 'ADD_BOOK', book: response.data }); // Update state with the new book
+      setInput({ title: '', author: '', year: '' }); // Clear input fields after adding
+      inputRef.current?.focus(); // Focus on the title input for convenience
+    } catch (error) {
+      console.error('Error adding book:', error);
+    }
   };
-
-  try {
-    const response = await axios.post('/books', newBook);
-    dispatch({ type: 'ADD_BOOK', book: response.data }); // Update state with the new book
-    setInput({ title: '', author: '', year: '' }); // Clear input fields after adding
-    inputRef.current?.focus(); // Focus on the title input for convenience
-  } catch (error) {
-    console.error('Error adding book:', error);
-  }
-};
-
 
   const handleDeleteBook = async (book_id: number) => {
     try {
@@ -136,7 +147,7 @@ const App: React.FC = () => {
     setSearch(e.target.value);
   };
 
-   const filteredBooks = books.filter(book => {
+  const filteredBooks = books.filter(book => {
     // Ensure book.title is not undefined before calling toLowerCase()
     return book.title && book.title.toLowerCase().includes(search.toLowerCase());
   });
@@ -192,7 +203,12 @@ const App: React.FC = () => {
           placeholder="Search by title"
         />
       </div>
-      {currentBooks.length === 0 ? (
+      {loading ? (
+        <div className='loading'>
+        <Player ref={playerRef} size={96} icon={ICON} />
+             <p>😊 Loading...</p>
+          </div>
+      ) : currentBooks.length === 0 ? (
         <div className="no-records">No books available 😒</div>
       ) : (
         <table className="book-table">
