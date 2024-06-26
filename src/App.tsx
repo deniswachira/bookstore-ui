@@ -108,7 +108,7 @@ const App: React.FC = () => {
       const updatedFields = editFields[book.book_id];
 
       try {
-        const response = await axios.put(`/books/${book.book_id}`, updatedFields);
+        await axios.put(`/books/${book.book_id}`, updatedFields);
         dispatch({ type: 'UPDATE_BOOK', book: { ...book, ...updatedFields, isEditing: false } });
         setEditFields(prev => {
           const newEditFields = { ...prev };
