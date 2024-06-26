@@ -1,8 +1,6 @@
 import React, { useState, useReducer, useRef, useEffect, useCallback } from 'react';
 import axios from './api/axiosConfig';
 import './App.scss';
-import { Player } from '@lordicon/react';
-import ICON from './assets/lock.json';
 
 interface Book {
   book_id: number;
@@ -46,13 +44,8 @@ const App: React.FC = () => {
   const [editFields, setEditFields] = useState<{ [key: number]: Partial<Book> }>({});
   const [loading, setLoading] = useState(false); // Add loading state
   const booksPerPage = 5;
-  const playerRef = useRef<Player>(null);
 
   const inputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    playerRef.current?.playFromBeginning();
-  }, []);
 
 
   useEffect(() => {
@@ -204,8 +197,7 @@ const App: React.FC = () => {
         />
       </div>
       {loading ? (
-        <div className='loading'>
-        <Player ref={playerRef} size={96} icon={ICON} />
+        <div className='loading'>        
              <p>😊 Loading...</p>
           </div>
       ) : currentBooks.length === 0 ? (
