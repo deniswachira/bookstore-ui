@@ -8,18 +8,12 @@ importers:
 
   .:
     dependencies:
-      '@lordicon/element':
-        specifier: ^1.6.0
-        version: 1.6.0
       '@lordicon/react':
         specifier: ^1.6.0
         version: 1.6.0(lottie-web@5.12.2)(react@18.3.1)
       axios:
         specifier: ^1.7.2
         version: 1.7.2
-      lottie-web:
-        specifier: ^5.12.2
-        version: 5.12.2
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -356,9 +350,6 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
-
-  '@lordicon/element@1.6.0':
-    resolution: {integrity: sha512-+w/CBDsqWvPZNwNIm1RszudmmJ8/sSsz+k5vS+b6Go37nidtQUG1JdMgCHdO5yzZLi+Pi3iX+EoqQdtGSzQucQ==}
 
   '@lordicon/helpers@1.6.0':
     resolution: {integrity: sha512-iEw6q1gycHf77e4o+PdTg1Ua4yXdREVnCsErTw/f4eaAUDYFF/qWQSq3mJJuiwvZ/JT1vwctQ2dKr1FxUY1W2w==}
@@ -1499,10 +1490,6 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
 
-  '@lordicon/element@1.6.0':
-    dependencies:
-      '@lordicon/helpers': 1.6.0
-
   '@lordicon/helpers@1.6.0': {}
 
   '@lordicon/react@1.6.0(lottie-web@5.12.2)(react@18.3.1)':
@@ -2108,7 +2095,8 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
-  lottie-web@5.12.2: {}
+  lottie-web@5.12.2:
+    optional: true
 
   lru-cache@5.1.1:
     dependencies:
