@@ -1,6 +1,7 @@
 import React, { useState, useReducer, useRef, useEffect, useCallback } from 'react';
 import axios from './api/axiosConfig';
 import './App.scss';
+import { PuffLoader } from 'react-spinners';
 
 interface Book {
   book_id: number;
@@ -198,7 +199,10 @@ const App: React.FC = () => {
       </div>
       {loading ? (
         <div className='loading'>        
-             <p>😊 Loading...</p>
+             <PuffLoader
+  color="#0cf400"
+  size={50}
+/>
           </div>
       ) : currentBooks.length === 0 ? (
         <div className="no-records">No books available 😒</div>
